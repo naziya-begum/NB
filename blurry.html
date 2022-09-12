@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+
+        }
+
+        body {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+
+
+
+
+        }
+
+        .bg {
+            background-image: url('index.jpg');
+            width: 100vw;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            justify-content: center;
+            filter: blur(30px);
+
+        }
+
+        .num {
+            color: rgb(255, 255, 255);
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bg" style='background-image: url("suirrel.jpg");'></section>
+    <div class="num">0%</div>
+</body>
+<Script>
+    const bg = document.querySelector('.bg');
+    const num = document.querySelector('.num');
+
+    let load = 0;
+    let blurr = setInterval(blurring, 30)
+    function blurring() {
+        load++
+        if (load > 99) {
+            clearInterval(blurr);
+        }
+        num.innerText = `${load}%`
+        num.style.opacity = scale(load, 1, 100, 1, 0);
+        bg.style.filter = `blur(${scale(load, 0, 100, 30, 0)}px)`
+    }
+    function scale(number, inMin, inMax, outMin, outMax) {
+        return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    }
+//https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+
+</Script>
+
+</html>
